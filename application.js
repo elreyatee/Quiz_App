@@ -1,70 +1,78 @@
-var index;
-var score;
+var i = 0;
+var qans = 0;
 
-function loadQuestion(i) {
+function loadQuestion() {
 	$(".question").text(questions[i].ques);
 	$("#ques1").append(questions[i].choices[0]);
 	$("#ques2").append(questions[i].choices[1]);
 	$("#ques3").append(questions[i].choices[2]);
 	$("#ques4").append(questions[i].choices[3]);
+	$(".quiz > img").attr("src", questions[i].pic);
 }
 
-function progBar() {
-	$(".prog-bar").css({"-webkit-animation-play-state": "running"});
-	setTimeout(function() {
-		$(".prog-bar").css({"-webkit-animation-play-state": "paused"})
-		}, 1750);
-}
-
-function clearQuestion(i) {
+function clearQuestion() {
 	$(".question").text(questions[i].ques);
 	$("#ques1").text(questions[i].choices[0]);
 	$("#ques2").text(questions[i].choices[1]);
 	$("#ques3").text(questions[i].choices[2]);
 	$("#ques4").text(questions[i].choices[3]);
+	$(".quiz > img").attr("src", questions[i].pic);
 	$("input:checked").prop("checked", false);
 }
 
 function startGame() {
 	$(".action").show();
-	loadQuestion(index);
+	loadQuestion();
+	checkQuestion();
+
+	/*if(qans == questions.length) {*/
+		$("#reset").fadeIn();
 	
-	$("#submit").on("click", function() {
-		var guess = $(this).closest(".action").find("input:checked").val();
-		if($("input[type='checkbox']:checked").length > 1) {
-			alert("Only choose one answer");
-		} else if(guess == undefined) {
-			alert("Please choose an answer");
-		} else if(guess == questions[index].correct) {
-			alert("Correct Answer!");
-			startGame(index+=1);
-			//progBar();
-			clearQuestion(index+=1);
-		} else if(guess !== questions[index].correct) {
-			alert("Incorrect Answer!");
-			startGame(index+=1);
-			//progBar();
-			clearQuestion(index+=1);
-		}
+	$("#reset").click(function(){
+		location.reload();
 	});
-	if(index > questions.length) {
-		$(".reset").show();
-	} 
+}
+
+function checkQuestion() {
+	$("#submit").click(function() {
+		var guess = $("input[type='checkbox']:checked").val();
+		console.log("guess: " + guess);
+
+		if($("input[type='checkbox']:checked").length > 1) {
+			$(".messagebox").text("Only choose one answer").css("color", "white");
+		} else if(guess == undefined) {
+			$(".messagebox").text("Please choose an answer").css("color", "white");
+		} else if(guess == questions[i].correct) {
+			$(".messagebox").text("CORRECT!").css("color", "green");
+			nextQuestion();
+		} else {
+			$(".messagebox").text("INCORRECT!").css("color", "red");
+			nextQuestion();
+		} 
+		console.log(qans);
+	});
+}
+
+function nextQuestion() {
+	i+=1;
+	qans+=1;
+	clearQuestion();
 }
 
 $(document).ready(function(){
 	$(".quiz").hide();
-	$(".reset").hide();
+	$(".intro").hide();
+	$("#reset").hide();
 
-	$("#enter-btn").on("click", function() {
-		$(this).closest("#ENTER").fadeOut("slow");
-		$(".quiz").fadeIn("slow");
+	$("#enter-btn").click(function() {
+		$(this).closest("#enter-btn").hide();
+		$(".logo").addClass("rotatelogo");
+		$("#ENTER").addClass("newheight");
+		$(".intro").fadeIn(2000);
+		setTimeout(function(){
+			$(".intro").hide();
+			$(".quiz").fadeIn();}, 6000);
 
-	});
-
-	$(".intro").on("click", "button", function(){
-		index = 0;
-		score = 0;
 		startGame();
 	});
 });

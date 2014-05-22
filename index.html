@@ -14,37 +14,29 @@
 <body>
 	<div id="ENTER">
 		<ul>
-			<li><img src="img/shield_symbol.jpg"></li>
+			<li><img src="img/shield_symbol.jpg" class="logo"/></li>
 			<li><input type="button" id="enter-btn" value="ENTER"></li>
+		</ul>
+	</div>
+	<div class="intro">
+		<h1>Welcome Recruit!</h1>
+		<br>
+		<p>As part of your operative training we have implemented a trivia module, testing your knowledge of S.H.I.E.L.D.,<br>
+		 its members, and enemies who threaten our way of life.  SHIELD only recruits the best, therefore it's imperative<br>
+		 that you pass this test with a score of 80% or better to advance to our next level of training. Good luck!</p>
 	</div>
 	<div class="quiz">
-		<div class="intro">
-			<h1>Welcome recruit!</h1>
-			<br>
-			<p>As part of your operative training we have implemented a trivia module, testing your knowledge of S.H.I.E.L.D.,<br>
-			 its members, and enemies who threaten our way of life.  SHIELD only recruits the best, therefore it's imperative<br>
-			 that you pass this test with a score of 80% or better to advance to our next level of training. Good luck!</p>
-			<br>
-			<button class="start_game">START</button>
-			<button class="reset">RESET</button>
-		</div>
-
-		<div class="monitor">
-			<ul class="action">
-				<h2 class="question"></h2>
-				<li><input type="checkbox" name="choice0" id="choice0" value="0"><label id="ques1" for="choice0"></label></li>
-				<li><input type="checkbox" name="choice1" id="choice1" value="1"><label id="ques2" for="choice1"></label></li>
-				<li><input type="checkbox" name="choice2" id="choice2" value="2"><label id="ques3" for="choice2"></label></li>
-				<li><input type="checkbox" name="choice3" id="choice3" value="3"><label id="ques4" for="choice3"></label></li>
-				<li><input type="submit"   name="submit"  id="submit" value="SUBMIT"></li>
-			</ul>
-		</div>
-
-		<!--<div class="score"></div>
-
-		<div class="prog-wrap">
-			<div class="prog-bar"></div>
-		</div>-->
+		<ul class="action">
+			<h2 class="question"></h2>
+			<li><input type="checkbox" name="choice0" id="choice0" value="0"><label id="ques1" for="choice0"></label></li>
+			<li><input type="checkbox" name="choice1" id="choice1" value="1"><label id="ques2" for="choice1"></label></li>
+			<li><input type="checkbox" name="choice2" id="choice2" value="2"><label id="ques3" for="choice2"></label></li>
+			<li><input type="checkbox" name="choice3" id="choice3" value="3"><label id="ques4" for="choice3"></label></li>
+			<input type="submit"   name="submit"  id="submit" value="SUBMIT">
+			<input type="button"   name="reset"   id="reset"  value="RESET">
+			<div class="messagebox"></div>
+		</ul>
+		<img src="">
 	</div>
 </body>
 </html>
