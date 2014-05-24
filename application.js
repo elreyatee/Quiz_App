@@ -1,5 +1,6 @@
 var i = 0;
 var qans = 0;
+var score = 0;
 
 function loadQuestion() {
 	$(".question").text(questions[i].ques);
@@ -22,35 +23,48 @@ function clearQuestion() {
 
 function startGame() {
 	$(".action").show();
+	$("#reset").hide();
 	loadQuestion();
 	checkQuestion();
-
-	/*if(qans == questions.length) {*/
-		$("#reset").fadeIn();
 	
 	$("#reset").click(function(){
-		location.reload();
+		if(score >= 5) {
+				$(".messagebox").text("Congrats! You're a new member of SHIELD!").css("color", "yellow");
+			} else {
+				$(".messagebox").text("You did not pass! Hit 'RESET' and try again.").css("color", "red");
+			}
+		setTimeout(function(){
+			location.reload();}, 5000);
 	});
 }
 
 function checkQuestion() {
 	$("#submit").click(function() {
 		var guess = $("input[type='checkbox']:checked").val();
-		console.log("guess: " + guess);
 
 		if($("input[type='checkbox']:checked").length > 1) {
 			$(".messagebox").text("Only choose one answer").css("color", "white");
 		} else if(guess == undefined) {
 			$(".messagebox").text("Please choose an answer").css("color", "white");
 		} else if(guess == questions[i].correct) {
+			score+= 1;
+			showScore();
 			$(".messagebox").text("CORRECT!").css("color", "green");
 			nextQuestion();
 		} else {
 			$(".messagebox").text("INCORRECT!").css("color", "red");
+			showScore();
 			nextQuestion();
 		} 
-		console.log(qans);
+
+		if(qans + 1 == questions.length) {
+			$("#reset").fadeIn();
+		}
 	});
+}
+
+function showScore() {
+	$("#score").text("Correct Answers: " + score);
 }
 
 function nextQuestion() {
@@ -71,8 +85,10 @@ $(document).ready(function(){
 		$(".intro").fadeIn(2000);
 		setTimeout(function(){
 			$(".intro").hide();
-			$(".quiz").fadeIn();}, 6000);
+			$(".quiz").fadeIn();
+			showScore();}, 6000);
 
 		startGame();
+		
 	});
 });

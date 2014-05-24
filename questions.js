@@ -31,4 +31,11 @@ var questions = [{
 	choices: ["Because it's cool", "To keep metal shards from entering his heart", "To be one with his machines", "To protect the arc reactor from industrial espionage"],
 	correct: 1,
 	pic: "img/ironman.jpg"
+	},
+
+	{
+	ques: "Why did Thanos use the Infinity Guantlet to kill half of all sentient life?",
+	choices: ["To win the affections of Death", "To satisfy his need for ultimate power", "Revenge for the death of his people", "For amusement"],
+	correct: 0,
+	pic: "img/thanos.png"
 	}];
