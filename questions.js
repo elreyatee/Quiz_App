@@ -38,4 +38,11 @@ var questions = [{
 	choices: ["To win the affections of Death", "To satisfy his need for ultimate power", "Revenge for the death of his people", "For amusement"],
 	correct: 0,
 	pic: "img/thanos.png"
+	},
+
+	{
+	ques: "Ultron is one of the Avengers' greatest tragedies. Who was his creator?",
+	choices: ["Tony Stark", "Ant-man", "Reed Richards", "Dr. Doom"],
+	correct: 1,
+	pic: "img/ultron.jpg"
 	}];
